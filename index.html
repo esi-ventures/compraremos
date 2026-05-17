@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Compraremos.com | Custodia y entrega de paquetes en La Paz</title>
+  <meta name="description" content="Custodia y entrega segura de paquetes para emprendedores y clientes en La Paz. Frente al Teleférico Morado.">
+
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:Arial,Helvetica,sans-serif;color:#111827;background:#fff}
+    section{scroll-margin-top:90px}
+    a{transition:.3s ease}
+
+    /* HEADER */
+    .header-compraremos{position:fixed;top:0;left:0;width:100%;z-index:9999;background:linear-gradient(90deg,rgba(15,23,42,.88),rgba(30,41,59,.82));backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.08);box-shadow:0 10px 35px rgba(0,0,0,.22)}
+    .header-container{max-width:1400px;margin:auto;padding:14px 30px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .logo-area img{height:58px;border-radius:10px;display:block}
+    .menu-desktop{display:flex;gap:28px;align-items:center}
+    .menu-desktop a{color:white;text-decoration:none;font-size:15px;font-weight:700;white-space:nowrap}
+    .menu-desktop a:hover{color:#ffb067}
+    .header-cta a,.mobile-btn{background:#ff7a00;color:white;text-decoration:none;padding:14px 24px;border-radius:14px;font-weight:800;display:inline-block}
+    .header-cta a:hover,.mobile-btn:hover{background:#ea580c;transform:translateY(-2px)}
+    .menu-toggle{display:none;background:none;border:none;color:white;font-size:34px;cursor:pointer}
+    .mobile-menu{display:none;background:#0f172a;padding:22px;border-top:1px solid rgba(255,255,255,.08)}
+    .mobile-menu a{display:block;color:white;text-decoration:none;padding:15px 0;font-weight:700;border-bottom:1px solid rgba(255,255,255,.08)}
+    .mobile-menu.show{display:block}
+
+    /* HERO */
+    .hero-bg{position:relative;min-height:100vh;background:url('imagenes/heroimg.png') center/cover no-repeat;display:flex;align-items:center}
+    .hero-overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(15,23,42,.90),rgba(15,23,42,.75),rgba(15,23,42,.35),rgba(15,23,42,.10))}
+    .hero-content{position:relative;z-index:2;width:100%;max-width:1400px;margin:auto;padding:40px}
+    .hero-box{max-width:620px;background:rgba(15,23,42,.45);backdrop-filter:blur(12px);padding:50px;border-radius:32px;border:1px solid rgba(255,255,255,.12);box-shadow:0 30px 80px rgba(0,0,0,.35)}
+    .hero-badge,.cta-badge{display:inline-block;padding:10px 18px;border-radius:999px;background:rgba(249,115,22,.18);color:#fdba74;border:1px solid rgba(249,115,22,.35);font-size:14px;font-weight:800;margin-bottom:24px}
+    .hero-box h1{font-size:68px;line-height:1.02;font-weight:900;color:white;letter-spacing:-2px;margin-bottom:22px}
+    .hero-box h1 span{color:#ff7a00}
+    .hero-box p{color:#e2e8f0;font-size:24px;line-height:1.4;margin-bottom:34px}
+    .hero-buttons,.cta-buttons,.ubicacion-buttons{display:flex;gap:18px;flex-wrap:wrap}
+    .hero-buttons a,.cta-buttons a,.ubicacion-buttons a{text-decoration:none;padding:18px 28px;border-radius:14px;font-size:17px;font-weight:800;transition:.3s ease}
+    .btn-orange,.cta-whatsapp,.btn-whatsapp{background:#ff7a00;color:white;box-shadow:0 15px 30px rgba(255,122,0,.25)}
+    .btn-orange:hover,.cta-whatsapp:hover,.btn-whatsapp:hover{background:#ea580c;transform:translateY(-2px)}
+    .btn-white,.cta-maps{background:rgba(255,255,255,.15);color:white;border:1px solid rgba(255,255,255,.18)}
+    .btn-white:hover,.cta-maps:hover{background:rgba(255,255,255,.24);transform:translateY(-2px)}
+    .btn-maps{background:#111827;color:white;box-shadow:0 15px 30px rgba(17,24,39,.20)}
+    .btn-maps:hover{background:#000;transform:translateY(-2px)}
+
+    /* REUSABLE */
+    .beneficios-section,.ideal-section,.como-funciona,.tarifas-section,.testimonios-section,.ubicacion-section,.faq-section{padding:90px 20px}
+    .beneficios-section,.tarifas-section,.ubicacion-section,.faq-section{background:#fff}
+    .ideal-section,.como-funciona,.testimonios-section{background:#f8fafc}
+    h2{font-size:42px;line-height:1.1;font-weight:900;text-align:center;margin-bottom:18px;color:#111827}
+    .ideal-header,.como-header,.tarifas-header,.testimonios-header,.ubicacion-header,.faq-header{max-width:850px;margin:0 auto 55px;text-align:center}
+    .ideal-header p,.como-header p,.tarifas-header p,.testimonios-header p,.ubicacion-header p,.faq-header p{font-size:20px;color:#4b5563;line-height:1.5}
+    .ideal-badge,.tarifas-badge,.testimonios-badge,.ubicacion-badge,.faq-badge{display:inline-block;padding:10px 18px;border-radius:999px;background:#eef2ff;color:#5b21b6;border:1px solid #ddd6fe;font-size:14px;font-weight:800;margin-bottom:24px}
+    .tarifas-badge,.testimonios-badge{background:#fff7ed;color:#ea580c;border-color:#fed7aa}
+
+    /* BENEFICIOS */
+    .beneficios-section h2{text-align:center;margin-bottom:32px}
+    .beneficios-container{max-width:1220px;margin:auto;display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
+    .beneficio-card{display:flex;gap:18px;padding:22px;border-radius:16px;transition:.3s ease;align-items:flex-start}
+    .beneficio-card:hover,.ideal-box:hover,.paso-card:hover,.tarifa-card:hover,.testimonio-card:hover,.ubicacion-card:hover{transform:translateY(-6px);box-shadow:0 24px 50px rgba(15,23,42,.12)}
+    .card-morado{background:#f5efff;border:1px solid #eadcff}.card-azul{background:#eef6ff;border:1px solid #d6e9ff}.card-naranja{background:#fff7ed;border:1px solid #fed7aa}
+    .beneficio-icon{width:50px;height:50px;border-radius:10px;color:white;display:flex;align-items:center;justify-content:center;font-size:23px;flex-shrink:0;box-shadow:0 10px 20px rgba(0,0,0,.15)}
+    .icon-morado{background:#6b21a8}.icon-azul{background:#1d4ed8}.icon-naranja{background:#ea580c}
+    .beneficio-card h3{font-size:20px;margin-bottom:8px;font-weight:900}.beneficio-card p{color:#374151;line-height:1.4;font-size:16px}
+
+    /* IDEAL */
+    .ideal-grid{max-width:1180px;margin:auto;display:grid;grid-template-columns:repeat(2,1fr);gap:32px}
+    .ideal-box{background:white;border:1px solid #e5e7eb;border-radius:26px;padding:38px;box-shadow:0 18px 40px rgba(15,23,42,.06);transition:.3s ease}
+    .ideal-top{display:flex;align-items:center;gap:20px;margin-bottom:28px}
+    .ideal-main-icon{width:82px;height:82px;border-radius:22px;background:linear-gradient(135deg,#5b21b6,#1d4ed8);display:flex;align-items:center;justify-content:center;font-size:38px;flex-shrink:0;box-shadow:0 18px 35px rgba(91,33,182,.22)}
+    .ideal-main-icon.azul{background:linear-gradient(135deg,#1d4ed8,#0f172a)}
+    .ideal-top h3{font-size:28px;margin-bottom:10px;font-weight:900}
+    .ideal-top p{color:#4b5563;line-height:1.5;font-size:17px}
+    .ideal-box ul{list-style:none;display:grid;gap:16px}
+    .ideal-box li{position:relative;padding-left:30px;color:#374151;font-size:17px;line-height:1.5}
+    .ideal-box li::before{content:"✓";position:absolute;left:0;color:#ff7a00;font-weight:900}
+
+    /* COMO FUNCIONA */
+    .pasos-container{max-width:1220px;margin:auto;display:grid;grid-template-columns:repeat(4,1fr);gap:34px}
+    .paso-card{position:relative;background:white;border:1px solid #e5e7eb;border-radius:16px;padding:48px 24px 26px;box-shadow:0 8px 20px rgba(15,23,42,.06);transition:.3s ease;min-height:215px}
+    .paso-numero{position:absolute;top:-20px;left:24px;width:42px;height:42px;border-radius:50%;color:white;font-weight:900;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 18px rgba(0,0,0,.18)}
+    .paso-icono{font-size:28px;margin-bottom:18px}
+    .paso-card h3{font-size:20px;margin-bottom:16px;font-weight:900}.paso-card p{color:#374151;line-height:1.45;font-size:16px}
+    .morado{background:#6b21a8}.azul{background:#1d4ed8}.naranja{background:#ea580c}.verde{background:#16a34a}
+    .morado-texto{color:#6b21a8}.azul-texto{color:#1d4ed8}.naranja-texto{color:#ea580c}.verde-texto{color:#16a34a}
+
+    /* TARIFAS */
+    .tarifa-principal{display:flex;justify-content:center}
+    .tarifa-card{width:100%;max-width:620px;background:white;border-radius:28px;padding:48px;text-align:center;border:1px solid #e5e7eb;box-shadow:0 20px 50px rgba(15,23,42,.08);transition:.3s ease}
+    .tarifa-icono{width:92px;height:92px;margin:0 auto 24px;border-radius:22px;background:linear-gradient(135deg,#5b21b6,#1d4ed8);display:flex;align-items:center;justify-content:center;font-size:42px;box-shadow:0 20px 35px rgba(91,33,182,.28)}
+    .tarifa-card h3{font-size:30px;margin-bottom:18px;font-weight:900}
+    .precio{font-size:72px;font-weight:900;color:#ff7a00;line-height:1}.precio-detalle{color:#6b7280;font-size:18px;margin:10px 0 36px}
+    .extra-info{display:grid;gap:16px;margin-bottom:38px;text-align:left}
+    .extra-item{display:flex;gap:14px;padding:18px 20px;background:#f8fafc;border-radius:16px;border:1px solid #e5e7eb;align-items:flex-start}
+    .extra-item span{font-size:24px}.extra-item p{color:#374151;line-height:1.5;font-size:16px}
+    .tarifa-card a{display:inline-block;text-decoration:none;background:#ff7a00;color:white;padding:18px 30px;border-radius:14px;font-weight:800;box-shadow:0 15px 30px rgba(255,122,0,.25)}
+    .tarifa-card a:hover{background:#ea580c;transform:translateY(-2px)}
+
+    /* TESTIMONIOS */
+    .testimonios-container{max-width:1180px;margin:auto;display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+    .testimonio-card{background:white;border:1px solid #e5e7eb;border-radius:24px;padding:34px 28px;box-shadow:0 16px 38px rgba(15,23,42,.06);transition:.3s ease}
+    .testimonio-card:hover{border-color:#ff7a00}
+    .quote-icon{font-size:58px;color:#ff7a00;font-weight:900;line-height:1;margin-bottom:16px}
+    .testimonio-card p{color:#374151;font-size:17px;line-height:1.7;margin-bottom:28px}
+    .cliente-info{display:flex;align-items:center;gap:16px}
+    .cliente-info img{width:64px;height:64px;border-radius:50%;object-fit:cover;border:3px solid white;box-shadow:0 10px 22px rgba(15,23,42,.12)}
+    .cliente-info h3{font-size:19px;margin-bottom:5px;font-weight:900}.cliente-info span{color:#6b7280;font-weight:700;font-size:15px}
+
+    /* UBICACION */
+    .ubicacion-container{max-width:1250px;margin:auto;display:grid;grid-template-columns:1fr 1.1fr;gap:40px;align-items:stretch}
+    .ubicacion-info{display:flex;flex-direction:column;gap:18px}
+    .ubicacion-card{background:white;border-radius:24px;padding:24px;display:flex;gap:18px;border:1px solid #e5e7eb;box-shadow:0 14px 35px rgba(15,23,42,.06);transition:.3s ease;align-items:flex-start}
+    .ubicacion-icon{width:68px;height:68px;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:28px;flex-shrink:0;background:linear-gradient(135deg,#5b21b6,#1d4ed8);box-shadow:0 16px 30px rgba(91,33,182,.20)}
+    .ubicacion-icon.naranja{background:linear-gradient(135deg,#ff7a00,#ea580c)}
+    .ubicacion-icon.verde{background:linear-gradient(135deg,#16a34a,#15803d)}
+    .ubicacion-card h3{font-size:22px;margin-bottom:10px;font-weight:900}.ubicacion-card p{color:#4b5563;font-size:17px;line-height:1.6}
+    .ubicacion-mapa{border-radius:28px;overflow:hidden;border:1px solid #e5e7eb;box-shadow:0 24px 55px rgba(15,23,42,.10)}
+    .ubicacion-mapa iframe{width:100%;height:100%;min-height:520px;border:0}
+    .ubicacion-buttons a{flex:1;text-align:center}
+
+    /* FAQ */
+    .faq-container{max-width:900px;margin:auto}
+    .faq-item{background:#f8fafc;border:1px solid #e5e7eb;border-radius:18px;margin-bottom:14px;overflow:hidden;transition:.3s ease}
+    .faq-item:hover{border-color:#ff7a00;box-shadow:0 12px 28px rgba(15,23,42,.08)}
+    .faq-item summary{cursor:pointer;padding:22px 58px 22px 24px;font-size:18px;font-weight:800;list-style:none;position:relative;color:#111827}
+    .faq-item summary::-webkit-details-marker{display:none}
+    .faq-item summary::after{content:"+";position:absolute;right:24px;top:50%;transform:translateY(-50%);color:#ff7a00;font-size:28px;font-weight:900}
+    .faq-item[open] summary::after{content:"−"}
+    .faq-item p{padding:0 24px 24px;color:#4b5563;line-height:1.6;font-size:16px}
+    .faq-cta{max-width:760px;margin:45px auto 0;text-align:center;background:linear-gradient(135deg,#5b21b6,#1d4ed8);color:white;border-radius:28px;padding:42px 30px;box-shadow:0 24px 55px rgba(91,33,182,.18)}
+    .faq-cta h3{font-size:30px;margin-bottom:12px;font-weight:900}.faq-cta p{color:#e0e7ff;margin-bottom:26px;font-size:18px}
+    .faq-cta a{display:inline-block;text-decoration:none;background:#ff7a00;color:white;padding:17px 28px;border-radius:14px;font-weight:800;box-shadow:0 15px 30px rgba(255,122,0,.28)}
+    .faq-cta a:hover{background:#ea580c;transform:translateY(-2px)}
+
+    /* CTA */
+    .cta-final{padding:100px 20px;background:linear-gradient(135deg,#5b21b6,#1d4ed8);color:white;text-align:center;position:relative;overflow:hidden}
+    .cta-final::before{content:"";position:absolute;width:500px;height:500px;background:radial-gradient(rgba(255,255,255,.12),transparent 70%);top:-180px;right:-120px}
+    .cta-container{max-width:900px;margin:auto;position:relative;z-index:2}
+    .cta-container h2{color:white;font-size:52px;text-align:center;margin-bottom:22px}
+    .cta-container p{color:#dbeafe;font-size:21px;line-height:1.6;margin:0 auto 38px;max-width:760px}
+    .cta-buttons{justify-content:center}
+
+    /* FOOTER */
+    .footer-compraremos{background:linear-gradient(180deg,#0f172a,#111827);color:white;padding-top:70px}
+    .footer-container{max-width:1300px;margin:auto;padding:0 24px 55px;display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:60px}
+    .footer-brand img{width:270px;max-width:100%;border-radius:12px;margin-bottom:26px}
+    .footer-brand p,.footer-contacto p,.footer-links a{color:#cbd5e1;line-height:1.7;font-size:16px}
+    .footer-links{display:flex;flex-direction:column;gap:14px}
+    .footer-links a{text-decoration:none}.footer-links a:hover{color:#ff7a00;transform:translateX(4px)}
+    .footer-links h3,.footer-contacto h3{font-size:22px;margin-bottom:20px;font-weight:900;color:white}
+    .footer-contacto p{margin-bottom:18px}
+    .footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding:26px 24px;display:flex;justify-content:space-between;max-width:1300px;margin:auto;gap:12px;flex-wrap:wrap}
+    .footer-bottom p{color:#94a3b8;font-size:15px}.footer-bottom strong{color:#ff7a00}
+
+    /* RESPONSIVE */
+    @media(max-width:980px){
+      .menu-desktop,.header-cta{display:none}.menu-toggle{display:block}
+      .beneficios-container,.testimonios-container{grid-template-columns:1fr}
+      .ideal-grid,.ubicacion-container{grid-template-columns:1fr}
+      .pasos-container{grid-template-columns:repeat(2,1fr)}
+      .footer-container{grid-template-columns:1fr}
+      .hero-box h1{font-size:46px}.hero-box p{font-size:19px}
+      h2,.cta-container h2{font-size:34px}
+      .hero-content{padding:24px}
+      .ubicacion-mapa iframe{min-height:420px}
+    }
+
+    @media(max-width:600px){
+      .header-container{padding:12px 18px}
+      .logo-area img{height:46px}
+      .hero-content{padding:24px}
+      .hero-box{padding:34px 24px;border-radius:24px}
+      .hero-box h1{font-size:36px;letter-spacing:-1px}
+      .hero-buttons a,.cta-buttons a,.ubicacion-buttons a{width:100%;text-align:center}
+
+      .pasos-container{grid-template-columns:repeat(2,1fr);gap:22px}
+      .paso-card{padding:44px 14px 22px}
+      .paso-card h3{font-size:16px}
+      .paso-card p{font-size:14px}
+      .paso-icono{font-size:23px}
+
+      .ideal-top{flex-direction:column;text-align:center}
+      .beneficios-section,.ideal-section,.como-funciona,.tarifas-section,.testimonios-section,.ubicacion-section,.faq-section{padding:70px 18px}
+      .tarifa-card{padding:34px 24px}.precio{font-size:58px}
+      .cta-final{padding:80px 18px}
+      .cta-container h2{font-size:31px}.cta-container p{font-size:17px}
+      .ubicacion-card{padding:22px}.ubicacion-icon{width:58px;height:58px;font-size:24px}
+      .footer-bottom{text-align:center;flex-direction:column}
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="header-compraremos">
+  <div class="header-container">
+    <a href="#" class="logo-area"><img src="imagenes/logocompraremos.jpg" alt="Compraremos Logo"></a>
+
+    <nav class="menu-desktop">
+      <a href="#beneficios">Beneficios</a>
+      <a href="#ideal-para">Ideal para</a>
+      <a href="#como-funciona">¿Cómo funciona?</a>
+      <a href="#tarifas">Tarifas</a>
+      <a href="#ubicacion">Ubicación</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+
+    <div class="header-cta">
+      <a href="https://wa.me/59177756617" target="_blank">Contactar</a>
+    </div>
+
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">☰</button>
+  </div>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#beneficios">Beneficios</a>
+    <a href="#ideal-para">Ideal para</a>
+    <a href="#como-funciona">¿Cómo funciona?</a>
+    <a href="#tarifas">Tarifas</a>
+    <a href="#ubicacion">Ubicación</a>
+    <a href="#faq">FAQ</a>
+    <a href="https://wa.me/59177756617" target="_blank" class="mobile-btn">Contactar por WhatsApp</a>
+  </div>
+</header>
+
+<section class="hero-bg">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-box">
+      <span class="hero-badge">📦 Punto Oficial de Custodia y Entrega</span>
+      <h1>Deja tus paquetes<br><span>en buenas manos</span></h1>
+      <p>Custodia segura, organización y entrega confiable para emprendedores y personas en La Paz.</p>
+      <div class="hero-buttons">
+        <a href="https://wa.me/59177756617" target="_blank" class="btn-orange">Contactar por WhatsApp</a>
+        <a href="#como-funciona" class="btn-white">¿Cómo funciona?</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="beneficios" class="beneficios-section">
+  <h2>¿Por qué usar Compraremos?</h2>
+  <div class="beneficios-container">
+    <div class="beneficio-card card-morado"><div class="beneficio-icon icon-morado">📍</div><div><h3>Ubicación Estratégica</h3><p>Frente al Teleférico Morado. Fácil acceso para emprendedores y compradores.</p></div></div>
+    <div class="beneficio-card card-azul"><div class="beneficio-icon icon-azul">▥</div><div><h3>Control por Código Único</h3><p>Cada paquete se registra individualmente para evitar pérdidas o confusiones.</p></div></div>
+    <div class="beneficio-card card-naranja"><div class="beneficio-icon icon-naranja">⏱</div><div><h3>Ahorra Tiempo y Estrés</h3><p>Olvídate de esperar clientes o coordinar entregas todo el día.</p></div></div>
+  </div>
+</section>
+
+<section id="ideal-para" class="ideal-section">
+  <div class="ideal-header">
+    <span class="ideal-badge">🚀 Soluciones prácticas para todos</span>
+    <h2>Ideal para emprendedores y custodia personal</h2>
+    <p>Compraremos te ayuda a organizar entregas y custodiar paquetes de forma segura y profesional.</p>
+  </div>
+
+  <div class="ideal-grid">
+    <div class="ideal-box">
+      <div class="ideal-top"><div class="ideal-main-icon">📦</div><div><h3>Para emprendedores</h3><p>Ideal para ventas online y entregas organizadas.</p></div></div>
+      <ul>
+        <li>Ventas por Facebook Live</li>
+        <li>Tiendas online</li>
+        <li>Ventas por TikTok e Instagram</li>
+        <li>Negocios sin local físico</li>
+        <li>Entregas organizadas y seguras</li>
+      </ul>
+    </div>
+
+    <div class="ideal-box">
+      <div class="ideal-top"><div class="ideal-main-icon azul">🔐</div><div><h3>Para custodia personal</h3><p>Deja tus paquetes u objetos en un lugar seguro.</p></div></div>
+      <ul>
+        <li>Custodia temporal de paquetes</li>
+        <li>Bolsas y objetos personales</li>
+        <li>Mientras haces trámites o compras</li>
+        <li>Control y registro del paquete</li>
+        <li>Punto seguro y accesible</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="como-funciona" class="como-funciona">
+  <div class="como-header">
+    <h2>¿Cómo funciona?</h2>
+    <p>Un proceso simple, seguro y rápido para dejar paquetes en custodia o entregar productos a tus clientes.</p>
+  </div>
+
+  <div class="pasos-container">
+    <div class="paso-card"><div class="paso-numero morado">1</div><div class="paso-icono morado-texto">▣</div><h3>Traes tus paquetes</h3><p>Dejas tus pedidos u objetos en nuestro punto autorizado.</p></div>
+    <div class="paso-card"><div class="paso-numero azul">2</div><div class="paso-icono azul-texto">🛡</div><h3>Registramos cada paquete</h3><p>Asignamos un código único para mantener control y orden.</p></div>
+    <div class="paso-card"><div class="paso-numero naranja">3</div><div class="paso-icono naranja-texto">📦</div><h3>Custodiamos con seguridad</h3><p>Tus paquetes permanecen organizados y protegidos.</p></div>
+    <div class="paso-card"><div class="paso-numero verde">4</div><div class="paso-icono verde-texto">✅</div><h3>Retiro o entrega</h3><p>El cliente recoge su paquete de forma fácil y confiable.</p></div>
+  </div>
+</section>
+
+<section id="tarifas" class="tarifas-section">
+  <div class="tarifas-header">
+    <span class="tarifas-badge">💰 Tarifas simples y transparentes</span>
+    <h2>Custodia de paquetes para emprendedores y clientes</h2>
+    <p>Un precio accesible para organizar tus entregas o dejar tus cosas en custodia.</p>
+  </div>
+
+  <div class="tarifa-principal">
+    <div class="tarifa-card">
+      <div class="tarifa-icono">📦</div>
+      <h3>Tarifa por paquete</h3>
+      <div class="precio">Bs. 2</div>
+      <p class="precio-detalle">por paquete</p>
+
+      <div class="extra-info">
+        <div class="extra-item"><span>🕒</span><p>A partir del 5to día se cobra <strong>Bs. 0.50 diarios</strong> por almacenamiento.</p></div>
+        <div class="extra-item"><span>🔐</span><p>Incluye registro y control del paquete.</p></div>
+        <div class="extra-item"><span>📍</span><p>Punto estratégico frente al Teleférico Morado.</p></div>
+      </div>
+
+      <a href="https://wa.me/59177756617" target="_blank">Consultar por WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<section id="testimonios" class="testimonios-section">
+  <div class="testimonios-header">
+    <span class="testimonios-badge">💬 Confianza real</span>
+    <h2>Emprendedores que confían en Compraremos</h2>
+    <p>Personas y negocios que ahora organizan mejor sus entregas y custodia de paquetes.</p>
+  </div>
+
+  <div class="testimonios-container">
+    <div class="testimonio-card"><div class="quote-icon">“</div><p>Antes perdía mucho tiempo coordinando entregas. Ahora dejo mis paquetes en Compraremos y mis clientes recogen sin problema.</p><div class="cliente-info"><img src="clientes/andrea.jpg" alt="Andrea"><div><h3>Andrea M.</h3><span>Tienda online</span></div></div></div>
+    <div class="testimonio-card"><div class="quote-icon">“</div><p>Me gusta porque registran cada paquete y todo queda más ordenado. Me da más confianza para mis ventas.</p><div class="cliente-info"><img src="clientes/carla.jpg" alt="Carla"><div><h3>Carla R.</h3><span>Vendedora por redes sociales</span></div></div></div>
+    <div class="testimonio-card"><div class="quote-icon">“</div><p>La ubicación frente al Teleférico Morado es muy cómoda. Mis clientes llegan fácil y recogen rápido.</p><div class="cliente-info"><img src="clientes/jose.jpg" alt="José"><div><h3>José L.</h3><span>Emprendedor</span></div></div></div>
+  </div>
+</section>
+
+<section id="ubicacion" class="ubicacion-section">
+  <div class="ubicacion-header">
+    <span class="ubicacion-badge">📍 Punto oficial de entrega</span>
+    <h2>Estamos frente al Teleférico Morado</h2>
+    <p>Un punto estratégico, fácil de encontrar y cómodo para emprendedores y clientes.</p>
+  </div>
+
+  <div class="ubicacion-container">
+    <div class="ubicacion-info">
+      <div class="ubicacion-card"><div class="ubicacion-icon">📌</div><div><h3>Dirección</h3><p>Av. Almirante Grau Nro. 151<br>Frente al Teleférico Morado<br>La Paz, Bolivia</p></div></div>
+      <div class="ubicacion-card"><div class="ubicacion-icon naranja">📱</div><div><h3>Contacto</h3><p>WhatsApp: 77756617</p></div></div>
+      <div class="ubicacion-card"><div class="ubicacion-icon verde">🕒</div><div><h3>Horarios</h3><p>Lunes a Viernes<br>09:00 – 20:00<br><br>Sábados<br>09:30 – 12:30<br><br>Zona Sur bajo coordinación previa</p></div></div>
+
+      <div class="ubicacion-buttons">
+        <a href="https://maps.app.goo.gl/qYh7pHVEHoWjnC8X6" target="_blank" class="btn-maps">Ver en Google Maps</a>
+        <a href="https://wa.me/59177756617" target="_blank" class="btn-whatsapp">Consultar por WhatsApp</a>
+      </div>
+    </div>
+
+    <div class="ubicacion-mapa">
+      <iframe src="https://maps.google.com/maps?q=Av.%20Almirante%20Grau%20151%20La%20Paz&t=&z=15&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+  </div>
+</section>
+
+<section class="faq-section" id="faq">
+  <div class="faq-header">
+    <span class="faq-badge">❓ Preguntas frecuentes</span>
+    <h2>Dudas comunes antes de usar Compraremos</h2>
+    <p>Respuestas rápidas sobre custodia, recojo y entrega de paquetes.</p>
+  </div>
+
+  <div class="faq-container">
+    <details class="faq-item"><summary>¿Cómo dejo mis paquetes?</summary><p>Solo debes traerlos a nuestra oficina en Av. Almirante Grau Nro. 151, frente al Teleférico Morado. Nosotros los registramos y organizamos.</p></details>
+    <details class="faq-item"><summary>¿Cuánto cuesta el servicio?</summary><p>La tarifa es Bs. 2 por paquete. A partir del 5to día se cobra Bs. 0.50 adicional por día.</p></details>
+    <details class="faq-item"><summary>¿Qué necesito para recoger un paquete?</summary><p>Debes presentar tu Carnet de Identidad original e indicar el nombre del vendedor o el código de entrega.</p></details>
+    <details class="faq-item"><summary>¿Es seguro dejar mis paquetes?</summary><p>Sí. Cada paquete se registra y se organiza para evitar pérdidas o confusiones.</p></details>
+    <details class="faq-item"><summary>¿Dónde están ubicados?</summary><p>Estamos en Av. Almirante Grau Nro. 151, frente al Teleférico Morado, La Paz.</p></details>
+    <details class="faq-item"><summary>¿Cuáles son sus horarios?</summary><p>Lunes a Viernes: 09:00 – 20:00<br>Sábados: 09:30 – 12:30</p></details>
+  </div>
+
+  <div class="faq-cta">
+    <h3>¿Tienes otra pregunta?</h3>
+    <p>Escríbenos por WhatsApp y te ayudamos directamente.</p>
+    <a href="https://wa.me/59177756617" target="_blank">Consultar por WhatsApp</a>
+  </div>
+</section>
+
+<section class="cta-final">
+  <div class="cta-container">
+    <span class="cta-badge">🚀 Comienza hoy mismo</span>
+    <h2>Organiza tus entregas y custodia de paquetes con Compraremos.com</h2>
+    <p>Un punto seguro, accesible y profesional para emprendedores y personas que necesitan dejar paquetes en custodia en La Paz.</p>
+
+    <div class="cta-buttons">
+      <a href="https://wa.me/59177756617" target="_blank" class="cta-whatsapp">Consultar por WhatsApp</a>
+      <a href="https://maps.app.goo.gl/qYh7pHVEHoWjnC8X6" target="_blank" class="cta-maps">Ver ubicación</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer-compraremos">
+  <div class="footer-container">
+    <div class="footer-brand">
+      <img src="imagenes/logocompraremos.jpg" alt="Compraremos Logo">
+      <p>Custodia y entrega profesional de paquetes para emprendedores, clientes y personas que necesitan un punto seguro en La Paz.</p>
+    </div>
+
+    <div class="footer-links">
+      <h3>Enlaces rápidos</h3>
+      <a href="#beneficios">Beneficios</a>
+      <a href="#ideal-para">Ideal para</a>
+      <a href="#como-funciona">¿Cómo funciona?</a>
+      <a href="#tarifas">Tarifas</a>
+      <a href="#ubicacion">Ubicación</a>
+      <a href="#faq">FAQ</a>
+    </div>
+
+    <div class="footer-contacto">
+      <h3>Contacto</h3>
+      <p>📍 Av. Almirante Grau Nro. 151<br>Frente al Teleférico Morado</p>
+      <p>📱 WhatsApp: 77756617</p>
+      <p>🕒 Lunes a Viernes: 09:00 – 20:00<br>Sábados: 09:30 – 12:30</p>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2026 Compraremos.com — Todos los derechos reservados.</p>
+    <p>Diseñado por <strong>ESI Ventures</strong></p>
+  </div>
+</footer>
+
+<script>
+  const menuToggle = document.getElementById("menuToggle");
+  const mobileMenu = document.getElementById("mobileMenu");
+
+  menuToggle.addEventListener("click", () => {
+    mobileMenu.classList.toggle("show");
+  });
+
+  document.querySelectorAll(".mobile-menu a").forEach(link => {
+    link.addEventListener("click", () => {
+      mobileMenu.classList.remove("show");
+    });
+  });
+</script>
+
+</body>
+</html>
