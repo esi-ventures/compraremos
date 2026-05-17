@@ -189,6 +189,34 @@
       .ubicacion-card{padding:22px}.ubicacion-icon{width:58px;height:58px;font-size:24px}
       .footer-bottom{text-align:center;flex-direction:column}
     }
+/* CARRUSEL DE TESTIMONIOS EN MÓVIL */
+@media(max-width:600px){
+
+  .testimonios-container{
+    display:flex !important;
+    overflow-x:auto;
+    gap:18px;
+    scroll-snap-type:x mandatory;
+    padding:0 6px 18px;
+    -webkit-overflow-scrolling:touch;
+  }
+
+  .testimonio-card{
+    min-width:85%;
+    flex:0 0 85%;
+    scroll-snap-align:center;
+  }
+
+  .testimonios-container::-webkit-scrollbar{
+    height:6px;
+  }
+
+  .testimonios-container::-webkit-scrollbar-thumb{
+    background:#ff7a00;
+    border-radius:999px;
+  }
+
+}
   </style>
 </head>
 
