@@ -14,17 +14,60 @@
     a{transition:.3s ease}
 
     /* HEADER */
-    .header-compraremos{position:fixed;top:0;left:0;width:100%;z-index:9999;background:linear-gradient(90deg,rgba(15,23,42,.88),rgba(30,41,59,.82));backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.08);box-shadow:0 10px 35px rgba(0,0,0,.22)}
+    .header-compraremos{
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      z-index:9999;
+      background:rgba(255,255,255,.88);
+      backdrop-filter:blur(18px);
+      -webkit-backdrop-filter:blur(18px);
+      border-bottom:1px solid rgba(15,23,42,.08);
+      box-shadow:0 10px 30px rgba(15,23,42,.08)
+    }
     .header-container{max-width:1400px;margin:auto;padding:14px 30px;display:flex;align-items:center;justify-content:space-between;gap:20px}
     .logo-area img{height:58px;border-radius:10px;display:block}
     .menu-desktop{display:flex;gap:28px;align-items:center}
-    .menu-desktop a{color:white;text-decoration:none;font-size:15px;font-weight:700;white-space:nowrap}
-    .menu-desktop a:hover{color:#ffb067}
+    .menu-desktop a{
+      color:#111827;
+      text-decoration:none;
+      font-size:15px;
+      font-weight:700;
+      white-space:nowrap
+    }
+    .menu-desktop a:hover{color:#ff7a00}
     .header-cta a,.mobile-btn{background:#ff7a00;color:white;text-decoration:none;padding:14px 24px;border-radius:14px;font-weight:800;display:inline-block}
     .header-cta a:hover,.mobile-btn:hover{background:#ea580c;transform:translateY(-2px)}
-    .menu-toggle{display:none;background:none;border:none;color:white;font-size:34px;cursor:pointer}
-    .mobile-menu{display:none;background:#0f172a;padding:22px;border-top:1px solid rgba(255,255,255,.08)}
-    .mobile-menu a{display:block;color:white;text-decoration:none;padding:15px 0;font-weight:700;border-bottom:1px solid rgba(255,255,255,.08)}
+    .menu-toggle{
+      display:none;
+      background:none;
+      border:none;
+      color:#111827;
+      font-size:34px;
+      cursor:pointer
+    }
+    .mobile-menu{
+      display:none;
+      background:rgba(255,255,255,.98);
+      padding:22px;
+      border-top:1px solid rgba(15,23,42,.08);
+      box-shadow:0 18px 35px rgba(15,23,42,.10)
+    }
+    .mobile-menu a{
+      display:block;
+      color:#111827;
+      text-decoration:none;
+      padding:15px 0;
+      font-weight:700;
+      border-bottom:1px solid rgba(15,23,42,.08)
+    }
+    .mobile-menu a.mobile-btn{
+      color:white;
+      text-align:center;
+      border-bottom:none;
+      margin-top:12px
+    }
     .mobile-menu.show{display:block}
 
     /* HERO */
@@ -189,6 +232,113 @@
       .ubicacion-card{padding:22px}.ubicacion-icon{width:58px;height:58px;font-size:24px}
       .footer-bottom{text-align:center;flex-direction:column}
     }
+
+.zona-sur-badge{
+
+  display:inline-block;
+
+  margin-top:14px;
+
+  padding:8px 14px;
+
+  border-radius:999px;
+
+  background:#eef2ff;
+
+  color:#4338ca;
+
+  font-size:14px;
+  font-weight:700;
+
+  border:1px solid #c7d2fe;
+}
+  
+    /* UBICACIÓN OSCURA */
+    .ubicacion-section{
+      background:linear-gradient(135deg,#0f172a,#1e293b) !important;
+      color:white;
+    }
+
+    .ubicacion-section h2{
+      color:white;
+    }
+
+    .ubicacion-header p{
+      color:#cbd5e1;
+    }
+
+    /* CARRUSEL DE TESTIMONIOS */
+    .testimonios-carousel{
+      position:relative;
+      max-width:1180px;
+      margin:auto;
+    }
+
+    .testimonio-btn{
+      display:none;
+    }
+
+    @media(min-width:981px){
+      .testimonios-carousel .testimonios-container{
+        max-width:1180px;
+        margin:auto;
+        display:grid;
+        grid-template-columns:repeat(3,1fr);
+        gap:28px;
+      }
+    }
+
+    @media(max-width:980px){
+      .testimonios-carousel{
+        max-width:100%;
+      }
+
+      .testimonios-carousel .testimonios-container{
+        display:flex !important;
+        grid-template-columns:none !important;
+        overflow-x:hidden !important;
+        overflow-y:hidden;
+        scroll-behavior:smooth;
+        gap:18px;
+        padding:0 12px 22px;
+        margin:0;
+      }
+
+      .testimonios-carousel .testimonio-card{
+        flex:0 0 86%;
+        min-width:86%;
+        max-width:86%;
+      }
+
+      .testimonio-btn{
+        display:flex;
+        position:absolute;
+        top:48%;
+        transform:translateY(-50%);
+        z-index:20;
+        width:44px;
+        height:44px;
+        border:none;
+        border-radius:50%;
+        background:#ff7a00;
+        color:white;
+        font-size:34px;
+        line-height:1;
+        align-items:center;
+        justify-content:center;
+        cursor:pointer;
+        box-shadow:0 10px 25px rgba(0,0,0,.22);
+      }
+
+      .testimonio-btn.prev{
+        left:0;
+      }
+
+      .testimonio-btn.next{
+        right:0;
+      }
+    }
+
   </style>
 </head>
 
@@ -327,10 +477,16 @@
     <p>Personas y negocios que ahora organizan mejor sus entregas y custodia de paquetes.</p>
   </div>
 
-  <div class="testimonios-container">
-    <div class="testimonio-card"><div class="quote-icon">“</div><p>Antes perdía mucho tiempo coordinando entregas. Ahora dejo mis paquetes en Compraremos y mis clientes recogen sin problema.</p><div class="cliente-info"><img src="clientes/andrea.jpg" alt="Andrea"><div><h3>Andrea M.</h3><span>Tienda online</span></div></div></div>
-    <div class="testimonio-card"><div class="quote-icon">“</div><p>Me gusta porque registran cada paquete y todo queda más ordenado. Me da más confianza para mis ventas.</p><div class="cliente-info"><img src="clientes/carla.jpg" alt="Carla"><div><h3>Carla R.</h3><span>Vendedora por redes sociales</span></div></div></div>
-    <div class="testimonio-card"><div class="quote-icon">“</div><p>La ubicación frente al Teleférico Morado es muy cómoda. Mis clientes llegan fácil y recogen rápido.</p><div class="cliente-info"><img src="clientes/jose.jpg" alt="José"><div><h3>José L.</h3><span>Emprendedor</span></div></div></div>
+  <div class="testimonios-carousel">
+    <button class="testimonio-btn prev" onclick="moverTestimonios(-1)" aria-label="Testimonio anterior">‹</button>
+
+    <div class="testimonios-container" id="testimoniosContainer">
+      <div class="testimonio-card"><div class="quote-icon">“</div><p>Antes perdía mucho tiempo coordinando entregas. Ahora dejo mis paquetes en Compraremos y mis clientes recogen sin problema.</p><div class="cliente-info"><img src="clientes/andrea.jpg" alt="Andrea"><div><h3>Andrea M.</h3><span>Tienda online</span></div></div></div>
+      <div class="testimonio-card"><div class="quote-icon">“</div><p>Me gusta porque registran cada paquete y todo queda más ordenado. Me da más confianza para mis ventas.</p><div class="cliente-info"><img src="clientes/carla.jpg" alt="Carla"><div><h3>Carla R.</h3><span>Vendedora por redes sociales</span></div></div></div>
+      <div class="testimonio-card"><div class="quote-icon">“</div><p>La ubicación frente al Teleférico Morado es muy cómoda. Mis clientes llegan fácil y recogen rápido.</p><div class="cliente-info"><img src="clientes/jose.jpg" alt="José"><div><h3>José L.</h3><span>Emprendedor</span></div></div></div>
+    </div>
+
+    <button class="testimonio-btn next" onclick="moverTestimonios(1)" aria-label="Siguiente testimonio">›</button>
   </div>
 </section>
 
@@ -345,7 +501,8 @@
     <div class="ubicacion-info">
       <div class="ubicacion-card"><div class="ubicacion-icon">📌</div><div><h3>Dirección</h3><p>Av. Almirante Grau Nro. 151<br>Frente al Teleférico Morado<br>La Paz, Bolivia</p></div></div>
       <div class="ubicacion-card"><div class="ubicacion-icon naranja">📱</div><div><h3>Contacto</h3><p>WhatsApp: 77756617</p></div></div>
-      <div class="ubicacion-card"><div class="ubicacion-icon verde">🕒</div><div><h3>Horarios</h3><p>Lunes a Viernes<br>09:00 – 20:00<br><br>Sábados<br>09:30 – 12:30<br><br>Zona Sur bajo coordinación previa</p></div></div>
+      <div class="ubicacion-card"><div class="ubicacion-icon verde">🕒</div><div><h3>Horarios</h3><p>Lunes a Viernes<br>09:00 – 20:00<br><br>Sábados<br>09:30 – 12:30<br><br></p>
+		<span class="zona-sur-badge">  Zona Sur bajo coordinación previa</span></div></div>
 
       <div class="ubicacion-buttons">
         <a href="https://maps.app.goo.gl/qYh7pHVEHoWjnC8X6" target="_blank" class="btn-maps">Ver en Google Maps</a>
@@ -439,6 +596,24 @@
       mobileMenu.classList.remove("show");
     });
   });
+
+  function moverTestimonios(direccion){
+    const contenedor = document.getElementById("testimoniosContainer");
+    if(!contenedor) return;
+
+    const tarjeta = contenedor.querySelector(".testimonio-card");
+    if(!tarjeta) return;
+
+    const estilos = window.getComputedStyle(contenedor);
+    const gap = parseInt(estilos.columnGap || estilos.gap || 18, 10) || 18;
+    const movimiento = tarjeta.getBoundingClientRect().width + gap;
+
+    contenedor.scrollBy({
+      left: direccion * movimiento,
+      behavior: "smooth"
+    });
+  }
+
 </script>
 
 </body>
